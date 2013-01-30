@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
+    version="2.0">
+    <portlet>
+        <portlet-name>catalog</portlet-name>
+        <display-name>Catalog</display-name>
+        <portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+        <expiration-cache>0</expiration-cache>
+        <supports>
+            <mime-type>text/html</mime-type>
+        </supports>
+        <portlet-info>
+            <title>Broadleaf Catalog</title>
+            <short-title>Broadleaf Catalog</short-title>
+            <keywords>Broadleaf Catalog</keywords>
+        </portlet-info>
+        <security-role-ref>
+            <role-name>administrator</role-name>
+        </security-role-ref>
+        <security-role-ref>
+            <role-name>guest</role-name>
+        </security-role-ref>
+        <security-role-ref>
+            <role-name>power-user</role-name>
+        </security-role-ref>
+        <security-role-ref>
+            <role-name>user</role-name>
+        </security-role-ref>
+    </portlet>
+    <portlet>
+        <portlet-name>cart</portlet-name>
+        <display-name>Cart</display-name>
+        <portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+        <supports>
+            <mime-type>text/html</mime-type>
+        </supports>
+        <portlet-info>
+            <title>Broadleaf Cart</title>
+            <short-title>Broadleaf Cart</short-title>
+            <keywords>Broadleaf Cart</keywords>
+        </portlet-info>
+        <security-role-ref>
+            <role-name>administrator</role-name>
+        </security-role-ref>
+        <security-role-ref>
+            <role-name>guest</role-name>
+        </security-role-ref>
+        <security-role-ref>
+            <role-name>power-user</role-name>
+        </security-role-ref>
+        <security-role-ref>
+            <role-name>user</role-name>
+        </security-role-ref>
+    </portlet>
+    <!-- User attributes needed by Broadleaf and used to instantiate a Customer for the Liferay user -->
+    <user-attribute>
+        <description>Liferay User ID</description>
+        <name>liferay.user.id</name>
+    </user-attribute>
+    <user-attribute>
+        <description>First Name</description>
+        <name>user.name.given</name>
+    </user-attribute>
+    <user-attribute>
+        <description>Last Name</description>
+        <name>user.name.family</name>
+    </user-attribute>
+    <user-attribute>
+        <description>Email Address</description>
+        <name>user.home-info.online.email</name>
+    </user-attribute>
+    
+</portlet-app>
