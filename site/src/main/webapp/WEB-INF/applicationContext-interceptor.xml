@@ -14,6 +14,8 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 
+    <context:component-scan base-package="com.mycompany.filter.security" />
+    
     <bean id="entityManagerInViewInterceptor" class="org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor">
         <property name="entityManagerFactory" ref="entityManagerFactory" />
     </bean>
@@ -36,6 +38,7 @@
         <!-- Liferay doesn't seem to set the authType -->
         <property name="useAuthTypeAsCredentials" value="false"/>
     </bean>
+
     <!-- Customized request processor since we are expecting a PreAuthenticationAuthenticatedToken -->
     <bean id="blCustomerStateRequestProcessor" class="com.mycompany.filter.security.PortletCustomerStateProcessor" />
     
@@ -49,7 +52,7 @@
                 <!-- establish the BLC Customer -->
                 <ref bean="customerStateInterceptor" />
                 <ref bean="cartStateInterceptor" />
-                <ref bean="requestInterceptor" />
+                <ref bean="broadleafRequestInterceptor" />
             </list>
         </property>
     </bean>
