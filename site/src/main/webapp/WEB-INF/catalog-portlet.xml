@@ -19,27 +19,13 @@
         
     <!-- Turn on AOP annotations (required by Broadleaf) -->
     <aop:config/>
-    
-    <!--  Checks for a URL match to a product's SEO URL.   -->
-    <bean class="org.broadleafcommerce.core.web.catalog.ProductHandlerMapping">
-      <property name="order" value="2"/>
-    </bean>
-    
-    <!--  Checks for a URL match to a CMS managed page URL.   -->
-    <bean class="org.broadleafcommerce.cms.web.PageHandlerMapping">
-      <property name="order" value="3"/>
-    </bean>
-    
-    <!--  Checks for a URL match to a category's SEO URL -->
-    <bean class="org.broadleafcommerce.core.web.catalog.CategoryHandlerMapping">
-      <property name="order" value="4"/>
-    </bean>
 
     <!-- Scan for custom controllers --> 
     <context:component-scan base-package="com.mycompany.controller.portlet.catalog" />
         
     <!-- Define custom interceptors -->
     <bean class="org.springframework.web.portlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+        <property name="applyWebRequestInterceptorsToRenderPhaseOnly" value="false" />
         <property name="interceptors" ref="blInterceptors" />
     </bean>
     
