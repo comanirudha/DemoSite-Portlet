@@ -52,26 +52,6 @@
 	                                      JOIN BLC_ROLE r ON cr.ROLE_ID = r.ROLE_ID 
 	                                      WHERE USER_NAME=?" />
     
-<!-- 	<bean id="blCsrfFilter" class="org.broadleafcommerce.common.security.handler.CsrfFilter" />
- -->	                                      
-    <!-- Sets the login failure URL -->
-    <!-- Not necessary in portlet environment -->
-    <!--
-	<bean id="blAuthenticationFailureHandler" class="org.broadleafcommerce.common.security.BroadleafAuthenticationFailureHandler">
-		<constructor-arg value="/login?error=true" />
-		<property name="redirectStrategy" ref="blAuthenticationFailureRedirectStrategy" />
-	</bean>
-    -->
-    
-    <!-- Sets the login success URL -->
-    <!-- Not necessary in portlet environment -->
-    <!--
-	<bean id="blAuthenticationSuccessHandler" class="org.broadleafcommerce.core.web.order.security.BroadleafAuthenticationSuccessHandler">
-		<property name="redirectStrategy" ref="blAuthenticationSuccessRedirectStrategy" />
-		<property name="defaultTargetUrl" value="/account" />
-		<property name="targetUrlParameter" value="successUrl" />
-		<property name="alwaysUseDefaultTargetUrl" value="false" />
-	</bean>
-	-->
+<!-- 	<bean id="blCsrfFilter" class="org.broadleafcommerce.common.security.handler.CsrfFilter" /> -->
     
 </beans>
