@@ -100,24 +100,24 @@
     
     <!-- This is an example of a custom dialect definition that uses a custom processor -->
     <!-- The second bean registers the dialct to the blWebTemplateEngine -->
-    <!-- Note that the same thing could be done for the blEmailTemplateEngine -->
-    <!-- 
-    <bean id="myDialect" class="com.mycompany.common.web.dialect.MyDialect">
-        <property name="processors">
-          <set>
-            <bean class="com.mycompany.common.web.processor.MyProcessor" />
-          </set>
-        </property>     
-    </bean> 
-    <bean id="blWebTemplateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine">
-        <property name="dialects">
-            <set>
-                <ref bean="myDialect" />
-            </set>
-        </property>
-    </bean> 
-    -->
-    
+	<!-- Note that the same thing could be done for the blEmailTemplateEngine -->
+    <context:component-scan base-package="com.mycompany.processor" />
+	<bean id="portletDialect" class="com.mycompany.processor.PortletDialect">
+	    <property name="processors">
+		  <set>
+			<ref bean="liferayActionUrlProcessor" />
+            <ref bean="liferayRenderUrlProcessor" />
+            <ref bean="liferayResourceUrlProcessor" />
+		  </set>
+		</property>  	
+	</bean> 
+	<bean id="blWebTemplateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine">
+		<property name="dialects">
+			<set>
+				<ref bean="portletDialect" />
+			</set>
+		</property>
+	</bean>	
     <!-- The following two beans are defined like this in Broadleaf Commerce. However, -->
     <!-- you may want to override the bean definitions by uncommenting these two beans -->
     <!-- to control whether or not templates are cacheable. This will generally be desireable -->
@@ -138,5 +138,38 @@
         <property name="characterEncoding" value="UTF-8" />
     </bean>
     -->
+
+    <!-- Scan Broadleaf defined web utility classes. Has to be in the root context (and not the portlet context)
+        because of dependency injection -->
+    <!--  context:component-scan base-package="org.broadleafcommerce.cms.web"/ -->
+    <context:component-scan base-package="org.broadleafcommerce.common.web"/>
+    <context:component-scan base-package="org.broadleafcommerce.core.web">
+        <context:exclude-filter type="regex" expression="BroadleafSocialSignin*"/>
+    </context:component-scan>   
+    <context:component-scan base-package="org.broadleafcommerce.profile.web.core">
+        <context:exclude-filter type="regex" expression="LoginService*"/>
+    </context:component-scan>
+        
+    <!-- Set up the view resolver to be used by Spring -->
+    <bean class="org.broadleafcommerce.common.web.BroadleafThymeleafViewResolver">
+        <property name="templateEngine" ref="blWebTemplateEngine" />
+        <property name="order" value="1" />
+        <property name="cache" value="false" />
+        <property name="fullPageLayout" value="layout/fullPageLayout" />
+        <property name="characterEncoding" value="UTF-8" />
+        <property name="layoutMap">
+            <map>
+                <entry key="account/" value="layout/accountLayout" />
+                <entry key="catalog/" value="NONE" />
+                <entry key="checkout/" value="layout/checkoutLayout" />
+                <entry key="checkout/confirmation" value="layout/fullPageNoNavLayout" />
+                <entry key="layout/" value="NONE" />
+                <entry key="portlet/" value="NONE" />
+            </map>
+        </property>
+    </bean>
+    
+    <!-- This validator will additionally require state on shipping addresses -->
+    <bean id="blShippingInfoFormValidator" class="org.broadleafcommerce.core.web.checkout.validator.USShippingInfoFormValidator" />
     
 </beans>
