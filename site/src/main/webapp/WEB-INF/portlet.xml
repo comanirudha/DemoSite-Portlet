@@ -56,6 +56,7 @@
         </security-role-ref>
     </portlet>
     <!-- User attributes needed by Broadleaf and used to instantiate a Customer for the Liferay user -->
+    <!-- These are used in the BroadleafPreAuthenticatedUserDetailsService -->
     <user-attribute>
         <description>Liferay User ID</description>
         <name>liferay.user.id</name>
