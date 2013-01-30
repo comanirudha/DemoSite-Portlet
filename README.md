@@ -1,9 +1,12 @@
-## The New Broadleaf Commerce Demo Site
+## Heat Clinic in Portlets
+This is an example of running the Heat Clinic application in a Portlet environment while still using Spring MVC. Some of the included code is specific to the Liferay environment (like ActionURLProcessor) but with minimal effort you should theoretically be able to run this in any Portal (WebSphere, Pluto, etc). If you are unexperienced with using Spring MVC in a portlet environment, I _highly_ recommend you read the Javadocs for [Spring's DispatcherPortler](http://static.springsource.org/spring/docs/3.1.x/javadoc-api/index.html?org/springframework/web/portlet/DispatcherPortlet.html). This does a good job of explaining some of the differences and idiosyncrisies between the Portlet and Servlet environment.
 
-This Maven project is meant to be used as a solid started project for any [Broadleaf Commerce](http://www.broadleafcommerce.org) application. It has many sensible defaults set up along with examples of how a fully functioning eCommerce site based on Broadleaf might work.
+This demo provides the following functionality:
+1. Some example _frontend_ portlets (cart, catalog, checkout (WIP); no admin portlet)
+2. Thymeleaf Integration
+3. Spring Security integration (via interceptors; more on this in a second)
+4. Some Liferay-specific code (see ActionURLProcessor)
+5. Full integration with Broadleaf - Broadleaf jars are included in the application
 
-One typical way of using this project would be to follow the [Getting Started Guide](http://docs.broadleafcommerce.org/current/Getting-Started.html), which would walk you through using our pre-bundled Eclipse workspace.
-
-However, if you would like to utilize your own workspace or IDE configuration, you may prefer to fork this project. This would give you the added benefit of being able to pull in upstream changes as we work to improve the DemoSite.
-
-> Note: If you are going to fork this project, we recommend basing your work on the `master` branch, and not the develop branch. develop is our ongoing development branch and there are no guarantees of stability on it.
+## Environment Setup
+You will need to have a few properties defined
