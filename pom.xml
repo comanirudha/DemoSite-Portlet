@@ -28,7 +28,8 @@
             <plugins>
                 <plugin>
                     <!-- Needed for Eclipse Indigo -->
-                    <!-- This plugin does not actually exist, but is instead read by Eclipse for configuration purposes -->
+                    <!-- This plugin does not actually exist, but is instead 
+                        read by Eclipse for configuration purposes -->
                     <groupId>org.eclipse.m2e</groupId>
                     <artifactId>lifecycle-mapping</artifactId>
                     <version>1.0.0</version>
@@ -150,7 +151,8 @@
                     <configuration>
                         <excludeDefaultDirectories>true</excludeDefaultDirectories>
                         <filesets>
-                            <!-- delete directories that will be generated when you start the develpment server/client in eclipse -->
+                            <!-- delete directories that will be generated 
+                                when you start the develpment server/client in eclipse -->
                             <fileset>
                                 <directory>target</directory>
                                 <includes>
@@ -353,9 +355,9 @@
                 <version>4.1.0.Final</version>
             </dependency>
             <dependency>
-                 <groupId>javax.validation</groupId>
-                 <artifactId>validation-api</artifactId>
-                 <version>1.0.0.GA</version>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>1.0.0.GA</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.tomcat</groupId>
@@ -369,8 +371,7 @@
     <modules>
         <module>admin</module>
         <module>core</module>
-        <module>site</module>
-            <module>combined</module>
-        </modules>
+        <module>portlet</module>
+    </modules>
 </project>
 
