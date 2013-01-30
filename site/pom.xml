@@ -12,6 +12,11 @@
     <name>site</name>
     <description>Web Module For Broadleaf Commerce Based ECommerce Site</description>
     <properties>
+        <liferay.auto.deploy.dir>${liferay.dir}/deploy</liferay.auto.deploy.dir>
+        <liferay.app.server.deploy.dir>${liferay.tomcat}/webapps</liferay.app.server.deploy.dir>
+        <liferay.app.server.lib.global.dir>${liferay.tomcat}/lib/ext</liferay.app.server.lib.global.dir>
+        <liferay.app.server.portal.dir>${liferay.tomcat}/webapps/ROOT</liferay.app.server.portal.dir>
+
         <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- httpsPort and httpPort are used by embeded jetty server.-->
