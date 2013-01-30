@@ -1,8 +1,11 @@
 package org.springframework.security.extensions.portlet;
 
 import org.springframework.security.authentication.AuthenticationDetailsSource;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.authority.GrantedAuthoritiesContainer;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
+import com.mycompany.filter.security.BroadleafPreAuthenticatedUserDetailsService;
 
 import javax.portlet.PortletRequest;
 
@@ -12,9 +15,14 @@ import java.util.Map;
 
 /**
  * Used by the PortletAuthenticationProcessingInterceptor in order to build a user details with the correct authorities
- * as well as put in the userinfo map from the portlet request
+ * as well as put in the userinfo map from the portlet request. While this is invoked by the
+ * {@link PortletAuthenticationProcessingInterceptor}, this is used by the {@link AuthenticationManager}, which in turn uses
+ * the {@link BroadleafPreAuthenticatedUserDetailsService}.
  * 
  * @author Phillip Verheyden
+ * @see {@link PortletAuthenticationProcessingInterceptor}
+ * @see {@link BroadleafPreAuthenticatedUserDetailsService}
+ * @see applicationContext-security.xml
  */
 public class PortletPreAuthenticatedAuthenticationDetailsSource implements AuthenticationDetailsSource<PortletRequest, GrantedAuthoritiesContainer> {
 

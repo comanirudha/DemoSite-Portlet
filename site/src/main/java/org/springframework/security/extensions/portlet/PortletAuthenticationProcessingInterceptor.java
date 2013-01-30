@@ -26,6 +26,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.authority.GrantedAuthoritiesContainer;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 import org.springframework.util.Assert;
@@ -215,7 +216,7 @@ public class PortletAuthenticationProcessingInterceptor implements HandlerInterc
                 }
                 ctx.setAuthentication(null);
                 request.getPortletSession().setAttribute(
-                        AbstractAuthenticationProcessingFilter.SPRING_SECURITY_LAST_EXCEPTION_KEY,
+                        WebAttributes.AUTHENTICATION_EXCEPTION,
                         failed, PortletSession.APPLICATION_SCOPE);
                 onUnsuccessfulAuthentication(request, response, failed);
             }
