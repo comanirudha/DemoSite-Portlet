@@ -10,8 +10,8 @@ test-output
 .metadata
 *.ipr
 bin/
-site/data/
+portlet/data/
 .svn
-site/solrhome
+portlet/solrhome
 combined/data/
 combined/solrhome
