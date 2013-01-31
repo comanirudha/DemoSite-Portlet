@@ -12,8 +12,6 @@
     <name>portlet</name>
     <description>Portlets For Broadleaf Commerce Based ECommerce Site</description>
     <properties>
-        <liferay.dir>/Users/phillipverheyden/broadleaf/liferay-portal-6.2.0-ce-m3</liferay.dir>
-        <liferay.tomcat>${liferay.dir}/tomcat-7.0.34</liferay.tomcat>
         <liferay.auto.deploy.dir>${liferay.dir}/deploy</liferay.auto.deploy.dir>
         <liferay.app.server.deploy.dir>${liferay.tomcat}/webapps</liferay.app.server.deploy.dir>
         <liferay.app.server.lib.global.dir>${liferay.tomcat}/lib/ext</liferay.app.server.lib.global.dir>
