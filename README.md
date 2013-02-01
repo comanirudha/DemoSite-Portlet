@@ -63,3 +63,6 @@ mvn clean install liferay:deploy
 ```
 
 The ```liferay:deploy``` goal will deploy broadleaf.war to the autodeploy directory that you have set via ```liferay.dir```.
+
+#Tomcat
+You will need to ensure that you have set your JNDI database resources properly. Specifically, Broadleaf will look for ```jdbc/web```, ```jdbc/webSecure``` and ```jdbc/webStorage```. We have provided examples of what you would need in Tomcat's conf/context.xml via the [included context.xml](portlet/src/main/webapp/META-INF/context.xml). You should be able to put the contents of this file inside of Tomcat's context.xml. Theoretically this should work by being a context file within the war, but Liferay has been known to modify the contents of this file. To save some headaches it is recommended to declare these as global Tomcat JNDI resources.
