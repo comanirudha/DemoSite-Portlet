@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.mycompany.filter.security;
+package com.mycompany.interceptor.security;
 
-import org.broadleafcommerce.common.web.BroadleafRequestContext;
-import org.broadleafcommerce.common.web.BroadleafRequestProcessor;
+import org.broadleafcommerce.core.web.order.security.CartStateRequestProcessor;
+import org.broadleafcommerce.profile.web.core.CustomerState;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.context.request.WebRequest;
@@ -27,22 +27,22 @@ import javax.annotation.Resource;
 
 
 /**
- * Interceptor responsible for setting up the BroadleafRequestContext for the life of the request. This interceptor
- * should be the very first one in the list, as other interceptors might also use {@link BroadleafRequestContext}
+ * Interceptor responsible for putting the current cart on the request. Carts are defined in BLC as an {@link Order} with
+ * a status of IN_PROCESS. This interceptor should go after {@link CustomerStateInterceptor} since it relies on
+ * {@link CustomerState}
  * 
  * @author Phillip Verheyden
- * @see {@link BroadleafRequestProcessor}
- * @see {@link BroadleafRequestContext}
+ * @see {@link CustomerState}
  */
 @Component
-public class BroadleafRequestInterceptor implements WebRequestInterceptor {
+public class CartStateInterceptor implements WebRequestInterceptor {
 
-    @Resource(name = "blRequestProcessor")
-    private BroadleafRequestProcessor requestProcessor;
+    @Resource(name = "blCartStateRequestProcessor")
+    protected CartStateRequestProcessor cartStateProcessor;
 
     @Override
     public void preHandle(WebRequest request) throws Exception {
-        requestProcessor.process(request);
+        cartStateProcessor.process(request);
     }
 
     @Override

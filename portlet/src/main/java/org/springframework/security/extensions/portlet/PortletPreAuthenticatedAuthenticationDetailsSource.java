@@ -5,7 +5,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.authority.GrantedAuthoritiesContainer;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import com.mycompany.filter.security.BroadleafPreAuthenticatedUserDetailsService;
+import com.mycompany.interceptor.security.BroadleafPreAuthenticatedUserDetailsService;
 
 import javax.portlet.PortletRequest;
 

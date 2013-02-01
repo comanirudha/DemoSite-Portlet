@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.mycompany.filter.security;
+package com.mycompany.interceptor.security;
 
 import org.broadleafcommerce.common.security.BroadleafExternalAuthenticationUserDetails;
 import org.springframework.security.core.Authentication;

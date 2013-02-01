@@ -14,7 +14,7 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 
-    <context:component-scan base-package="com.mycompany.filter.security" />
+    <context:component-scan base-package="com.mycompany.interceptor.security" />
     
     <bean id="entityManagerInViewInterceptor" class="org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor">
         <property name="entityManagerFactory" ref="entityManagerFactory" />
@@ -40,7 +40,7 @@
     </bean>
 
     <!-- Customized request processor since we are expecting a PreAuthenticationAuthenticatedToken -->
-    <bean id="blCustomerStateRequestProcessor" class="com.mycompany.filter.security.PortletCustomerStateProcessor" />
+    <bean id="blCustomerStateRequestProcessor" class="com.mycompany.interceptor.security.PortletCustomerStateProcessor" />
     
     <bean id="blInterceptors" class="org.springframework.beans.factory.config.ListFactoryBean" scope="prototype">
         <property name="sourceList">

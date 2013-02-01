@@ -34,7 +34,7 @@
     
     <bean id="liferayAuthenticationProvider" class="org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationProvider">
         <property name="preAuthenticatedUserDetailsService">
-            <bean class="com.mycompany.filter.security.BroadleafPreAuthenticatedUserDetailsService"/>
+            <bean class="com.mycompany.interceptor.security.BroadleafPreAuthenticatedUserDetailsService"/>
         </property>
     </bean>
 	<sec:authentication-manager alias="blAuthenticationManager">
