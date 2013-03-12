@@ -1,5 +1,6 @@
 <div>
-    <blc:form th:object="${shippingInfoForm}" th:action="@{/checkout/singleship}" method="post" id="shipping_info" novalidate="novalidate" th:classappend="${validShipping} ? 'hide'">
+    <portlet:actionurl name="singleship" var="singleShipUrl"/>
+    <form th:object="${shippingInfoForm}" action="checkout?p_auth=dCDqN3Z9&amp;p_p_id=checkout_WAR_broadleaf&amp;p_p_lifecycle=1&amp;p_p_state=normal&amp;p_p_mode=view&amp;p_p_col_id=column-1&amp;p_p_col_count=1&amp;_checkout_WAR_broadleaf_javax.portlet.action=singleship" method="post" id="shipping_info" novalidate="novalidate" th:classappend="${validShipping} ? 'hide'">
         <div class="left_content">
             <input type="hidden" name="address.country" value="US" />
 
@@ -77,7 +78,7 @@
                 <a id="multiship" th:href="@{/checkout/multiship}"><span th:text="#{cart.shipToMultipleAddresses}">Ship to Multiple Addresses</span></a>
             </p>
         </div>
-    </blc:form>
+    </form>
 
     <div th:if="${validShipping}" th:object="${shippingInfoForm}" th:inline="text" class="clearfix">
         <div class="group shipping-info-read-only">         

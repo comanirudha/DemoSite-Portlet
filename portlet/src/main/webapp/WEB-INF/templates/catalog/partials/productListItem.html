@@ -1,7 +1,7 @@
 <div th:if="*{featuredProduct}" class="new_badge">New!</div>
 
 <div class="image">
-    <portlet:resourceurl var="productUrl" productId="*{id}" />
+    <portlet:renderurl var="productUrl" productId="*{id}" />
 	<a th:href="${productUrl}">
 	<img th:if="*{media['primary']}" th:src="@{*{media['primary'].url}}" alt="Sauce Image" />
 	<div class="price" th:if="${#object instanceof T(org.broadleafcommerce.core.catalog.domain.ProductBundle)}">
@@ -27,7 +27,7 @@
 	</div>
 
 	<div class="add_to_cart" th:classappend="${cart.containsSku(#object.defaultSku)}? ' hidden'">
-	   <portlet:actionurl portletName="cart_WAR_broadleaf" var="action" />
+	   <portlet:actionurl portletName="cart_WAR_broadleaf" name="add" var="action" />
 		<form method="POST" th:action="${action}">
 			<input type="hidden" name="productId" th:value="*{id}" />
 			<input type="hidden" name="quantity" value="1" />
