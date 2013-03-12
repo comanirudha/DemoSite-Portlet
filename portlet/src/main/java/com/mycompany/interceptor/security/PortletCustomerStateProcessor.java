@@ -40,7 +40,7 @@ public class PortletCustomerStateProcessor extends CustomerStateRequestProcessor
     public void process(WebRequest request) {
         //This should be instantiated in BroadleafPreAuthenticatedUserDetailsService
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null) {
+        if (authentication != null && CustomerState.getCustomer() == null) {
             BroadleafExternalAuthenticationUserDetails user = (BroadleafExternalAuthenticationUserDetails)authentication.getPrincipal();
             Customer customer = customerService.readCustomerByUsername(user.getEmail());
             //no user instantiated for this Portal user yet, do that

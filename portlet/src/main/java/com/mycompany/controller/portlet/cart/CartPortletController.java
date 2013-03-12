@@ -16,21 +16,23 @@
 
 package com.mycompany.controller.portlet.cart;
 
-import org.broadleafcommerce.core.order.domain.NullOrderImpl;
-import org.broadleafcommerce.core.order.domain.Order;
 import org.broadleafcommerce.core.order.service.OrderService;
 import org.broadleafcommerce.core.order.service.exception.AddToCartException;
+import org.broadleafcommerce.core.order.service.exception.RemoveFromCartException;
+import org.broadleafcommerce.core.order.service.exception.UpdateCartException;
 import org.broadleafcommerce.core.pricing.service.exception.PricingException;
+import org.broadleafcommerce.core.web.controller.cart.BroadleafCartController;
 import org.broadleafcommerce.core.web.order.model.AddToCartItem;
-import org.broadleafcommerce.core.web.order.security.CartStateRequestProcessor;
 import org.broadleafcommerce.core.web.service.UpdateCartService;
-import org.broadleafcommerce.profile.core.domain.Customer;
-import org.broadleafcommerce.profile.web.core.security.CustomerStateRequestProcessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.portlet.bind.annotation.ActionMapping;
+import org.springframework.web.portlet.bind.annotation.RenderMapping;
+
+import com.liferay.portal.util.PortalUtil;
 
 import javax.annotation.Resource;
 import javax.portlet.ActionRequest;
@@ -47,7 +49,7 @@ import java.io.IOException;
  */
 @Controller
 @RequestMapping("VIEW")
-public class CartPortletController {
+public class CartPortletController extends BroadleafCartController {
     
     @Resource(name="blOrderService")
     protected OrderService orderService;
@@ -55,33 +57,39 @@ public class CartPortletController {
     @Resource(name="blUpdateCartService")
     protected UpdateCartService updateCartService;
     
-    @RequestMapping
-    public String viewCart(RenderRequest request, RenderResponse response, Model model) {
-        return "portlet/cart";
+    @RenderMapping
+    public String viewCart(RenderRequest request, RenderResponse response, Model model) throws PricingException {
+        return super.cart(PortalUtil.getHttpServletRequest(request), PortalUtil.getHttpServletResponse(response), model);
     }
     
-//    @RequestMapping(value = "/add", produces = "application/json")
-//    @ResourceMapping("addToCart")
-    @ActionMapping
-    public void addJson(ActionRequest request, ActionResponse response, Model model,
+    @ActionMapping("add")
+    public void add(ActionRequest request, ActionResponse response, Model model,
             @ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException, AddToCartException {
 
-        Order cart = (Order)request.getAttribute(CartStateRequestProcessor.getCartRequestAttributeName());
-        
-        // If the cart is currently empty, it will be the shared, "null" cart. We must detect this
-        // and provision a fresh cart for the current customer upon the first cart add
-        if (cart == null || cart instanceof NullOrderImpl) {
-            cart = orderService.createNewCartForCustomer((Customer)request.getAttribute(CustomerStateRequestProcessor.getCustomerRequestAttributeName()));
-        }
-        
-        updateCartService.validateCart(cart);
+        super.add(PortalUtil.getHttpServletRequest(request), PortalUtil.getHttpServletResponse(response), model, addToCartItem);
+    }
 
-        cart = orderService.addItem(cart.getId(), addToCartItem, false);
-        cart = orderService.save(cart,  true);
-        //CartState.setCart(cart);
-        request.setAttribute(CartStateRequestProcessor.getCartRequestAttributeName(), cart);
+    @ActionMapping("updateQuantity")
+    public void updateQuantity(ActionRequest request, ActionResponse response, Model model,
+            @ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException, UpdateCartException, RemoveFromCartException {
+        super.updateQuantity(PortalUtil.getHttpServletRequest(request), PortalUtil.getHttpServletResponse(response), model, addToCartItem);
+    }
 
-        
-        //return new HashMap<String, Object>();
+    @ActionMapping("remove")
+    public void remove(ActionRequest request, ActionResponse response, Model model,
+            @ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException, RemoveFromCartException {
+        super.remove(PortalUtil.getHttpServletRequest(request), PortalUtil.getHttpServletResponse(response), model, addToCartItem);
+    }
+
+    @ActionMapping("addPromo")
+    public void addPromo(ActionRequest request, ActionResponse response, Model model,
+            @RequestParam("promoCode") String customerOffer) throws IOException, PricingException {
+        super.addPromo(PortalUtil.getHttpServletRequest(request), PortalUtil.getHttpServletResponse(response), model, customerOffer);
+    }
+
+    @ActionMapping("removePromo")
+    public void removePromo(ActionRequest request, ActionResponse response, Model model,
+            @RequestParam("offerCodeId") Long offerCodeId) throws IOException, PricingException {
+        super.removePromo(PortalUtil.getHttpServletRequest(request), PortalUtil.getHttpServletResponse(response), model, offerCodeId);
     }
 }
