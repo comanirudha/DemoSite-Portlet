@@ -134,6 +134,11 @@ public class LiferayActionUrlProcessor extends AbstractModelVariableModifierProc
                 liferayPortletURL.setParameter("productId", productId.toString());
             }
 
+            if (element.getAttributeValue("orderItemId") != null) {
+                Long orderItemId = (Long) StandardExpressionProcessor.processExpression(arguments, element.getAttributeValue("orderItemId"));
+                liferayPortletURL.setParameter("orderItemId", orderItemId.toString());
+            }
+
             
             String portletURLToString = liferayPortletURL.toString();
             String var = element.getAttributeValue("var");
