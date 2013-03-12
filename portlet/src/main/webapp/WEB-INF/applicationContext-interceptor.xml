@@ -49,10 +49,12 @@
                 <!-- Ordering here matters; need to establish the SecurityContext prior to invoking the authentication -->
                 <ref bean="portletSecurityContextIntegrationInterceptor"/>
                 <ref bean="portletAuthenticationInterceptor"/>
-                <!-- establish the BLC Customer -->
-                <ref bean="customerStateInterceptor" />
-                <ref bean="cartStateInterceptor" />
+                <!-- Ensure the BLC request context is properly intialized -->
                 <ref bean="broadleafRequestInterceptor" />
+                <!-- establish the BLC Customer and make available on the request -->
+                <ref bean="customerStateInterceptor" />
+                <!-- Ensure that the current cart is available on the request -->
+                <ref bean="cartStateInterceptor" />
             </list>
         </property>
     </bean>
