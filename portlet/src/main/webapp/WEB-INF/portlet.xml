@@ -55,7 +55,32 @@
             <role-name>user</role-name>
         </security-role-ref>
     </portlet>
-    <!-- User attributes needed by Broadleaf and used to instantiate a Customer for the Liferay user -->
+    <portlet>
+        <portlet-name>checkout</portlet-name>
+        <display-name>Checkout</display-name>
+        <portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+        <supports>
+            <mime-type>text/html</mime-type>
+        </supports>
+        <portlet-info>
+            <title>Broadleaf Checkout</title>
+            <short-title>Broadleaf Checkout</short-title>
+            <keywords>Broadleaf Checkout</keywords>
+        </portlet-info>
+        <security-role-ref>
+            <role-name>administrator</role-name>
+        </security-role-ref>
+        <security-role-ref>
+            <role-name>guest</role-name>
+        </security-role-ref>
+        <security-role-ref>
+            <role-name>power-user</role-name>
+        </security-role-ref>
+        <security-role-ref>
+            <role-name>user</role-name>
+        </security-role-ref>
+    </portlet>
+     <!-- User attributes needed by Broadleaf and used to instantiate a Customer for the Liferay user -->
     <!-- These are used in the BroadleafPreAuthenticatedUserDetailsService -->
     <user-attribute>
         <description>Liferay User ID</description>
