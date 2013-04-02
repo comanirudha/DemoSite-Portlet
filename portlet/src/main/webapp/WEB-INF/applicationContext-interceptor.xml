@@ -42,6 +42,9 @@
     <!-- Customized request processor since we are expecting a PreAuthenticationAuthenticatedToken -->
     <bean id="blCustomerStateRequestProcessor" class="com.mycompany.interceptor.security.PortletCustomerStateProcessor" />
     
+    <bean id="blRequestInterceptor" class="org.broadleafcommerce.common.web.BroadleafRequestInterceptor" />
+    <bean id="blCustomerStateInterceptor" class="org.broadleafcommerce.profile.web.core.security.CustomerStateInterceptor" />
+    <bean id="blCartStateInterceptor" class="org.broadleafcommerce.core.web.order.security.CartStateInterceptor" />
     <bean id="blInterceptors" class="org.springframework.beans.factory.config.ListFactoryBean" scope="prototype">
         <property name="sourceList">
             <list>
@@ -50,11 +53,11 @@
                 <ref bean="portletSecurityContextIntegrationInterceptor"/>
                 <ref bean="portletAuthenticationInterceptor"/>
                 <!-- Ensure the BLC request context is properly intialized -->
-                <ref bean="broadleafRequestInterceptor" />
+                <ref bean="blRequestInterceptor" />
                 <!-- establish the BLC Customer and make available on the request -->
-                <ref bean="customerStateInterceptor" />
+                <ref bean="blCustomerStateInterceptor" />
                 <!-- Ensure that the current cart is available on the request -->
-                <ref bean="cartStateInterceptor" />
+                <ref bean="blCartStateInterceptor" />
             </list>
         </property>
     </bean>
