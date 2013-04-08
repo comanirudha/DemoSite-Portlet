@@ -1,11 +1,11 @@
 /*
- * Copyright 2012 the original author or authors.
+ * Copyright 2008-2013 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *       http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,27 +14,20 @@
  * limitations under the License.
  */
 
-package com.mycompany.processor;
+package com.mycompany.liferay.processor;
 
 import org.springframework.stereotype.Component;
-
-import javax.portlet.PortletRequest;
 
 
 /**
  * 
- * @author Phillip Verheyden
+ *
+ * @author Phillip Verheyden (phillipuniverse)
  */
 @Component
-public class LiferayResourceUrlProcessor extends LiferayActionUrlProcessor {
+public class LiferaySrcAttributeProcessor extends LiferayAttributeModifierProcessor {
 
-    public LiferayResourceUrlProcessor() {
-        super("resourceurl");
+    public LiferaySrcAttributeProcessor() {
+        super("src");
     }
-    
-    @Override
-    public String getLifeCycle() {
-        return PortletRequest.RESOURCE_PHASE;
-    }
-    
 }
