@@ -25,6 +25,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.portlet.bind.annotation.RenderMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -51,7 +52,7 @@ public class CategoryPortletController extends BroadleafCategoryController {
         BroadleafRequestContext context = BroadleafRequestContext.getBroadleafRequestContext();
         Category category = catalogService.findCategoryById(categoryId);
         if (category != null) {
-            context.getRequest().setAttribute(CategoryHandlerMapping.CURRENT_CATEGORY_ATTRIBUTE_NAME, category);
+            context.getWebRequest().setAttribute(CategoryHandlerMapping.CURRENT_CATEGORY_ATTRIBUTE_NAME, category, RequestAttributes.SCOPE_REQUEST);
             ModelAndView result = super.handleRequest(PortalUtil.getHttpServletRequest(baseRequest), PortalUtil.getHttpServletResponse(baseResponse));
             model.addAllAttributes(result.getModel());
             return result.getViewName();
