@@ -52,6 +52,5 @@
 	                                      JOIN BLC_ROLE r ON cr.ROLE_ID = r.ROLE_ID 
 	                                      WHERE USER_NAME=?" />
     
-<!-- 	<bean id="blCsrfFilter" class="org.broadleafcommerce.common.security.handler.CsrfFilter" /> -->
     
 </beans>

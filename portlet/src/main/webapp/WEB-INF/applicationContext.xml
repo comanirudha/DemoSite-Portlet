@@ -101,20 +101,21 @@
     <!-- This is an example of a custom dialect definition that uses a custom processor -->
     <!-- The second bean registers the dialct to the blWebTemplateEngine -->
 	<!-- Note that the same thing could be done for the blEmailTemplateEngine -->
-    <context:component-scan base-package="com.mycompany.processor" />
-	<bean id="portletDialect" class="com.mycompany.processor.PortletDialect">
+    <context:component-scan base-package="com.mycompany.liferay.processor" />
+	<bean id="liferayPortletDialect" class="com.mycompany.liferay.processor.LiferayPortletDialect">
 	    <property name="processors">
 		  <set>
-			<ref bean="liferayActionUrlProcessor" />
-            <ref bean="liferayRenderUrlProcessor" />
-            <ref bean="liferayResourceUrlProcessor" />
+			<ref bean="liferayActionAttributeProcessor" />
+            <ref bean="liferayURLWithProcessor" />
+            <ref bean="liferayHrefAttributeProcessor" />
+            <ref bean="liferaySrcAttributeProcessor" />
 		  </set>
 		</property>  	
 	</bean> 
 	<bean id="blWebTemplateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine">
 		<property name="dialects">
 			<set>
-				<ref bean="portletDialect" />
+				<ref bean="liferayPortletDialect" />
 			</set>
 		</property>
 	</bean>	

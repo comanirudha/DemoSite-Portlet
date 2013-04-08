@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.mycompany.processor;
+package com.mycompany.liferay.processor;
 
 import org.broadleafcommerce.common.web.dialect.BLCDialect;
 
@@ -23,11 +23,11 @@ import org.broadleafcommerce.common.web.dialect.BLCDialect;
  * 
  * @author Phillip Verheyden
  */
-public class PortletDialect extends BLCDialect {
+public class LiferayPortletDialect extends BLCDialect {
 
     @Override
     public String getPrefix() {
-        return "portlet";
+        return "liferay";
     }
 
 }

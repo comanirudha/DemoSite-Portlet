@@ -41,6 +41,7 @@
 
     <!-- Customized request processor since we are expecting a PreAuthenticationAuthenticatedToken -->
     <bean id="blCustomerStateRequestProcessor" class="com.mycompany.interceptor.security.PortletCustomerStateProcessor" />
+    <bean id="blRequestProcessor" class="com.mycompany.interceptor.security.LiferayRequestProcessor" />
     
     <bean id="blRequestInterceptor" class="org.broadleafcommerce.common.web.BroadleafRequestInterceptor" />
     <bean id="blCustomerStateInterceptor" class="org.broadleafcommerce.profile.web.core.security.CustomerStateInterceptor" />
