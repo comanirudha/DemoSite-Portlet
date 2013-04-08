@@ -12,7 +12,7 @@
         <tr th:each="item : ${cart.orderItems}" th:object="${item}" th:id="${'productRow' + item.id}">
             <td><img th:if="*{product.media['primary']}" th:src="@{*{product.media['primary'].url}}" width="60" th:alt="*{product.name}" /></td>
             <td class="name">
-                <a th:href="@{*{product.url}}" th:text="*{product.name}"></a>
+                <a liferay:href="productId=*{id}" th:text="*{product.name}"></a>
                 <br/>
                 <ul th:unless="*{#lists.isEmpty(sku.productOptionValues)}" class="productOptions">
                     <li th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue}"></li>
@@ -22,15 +22,17 @@
                 </ul>
             </td>
             <td align="center">
-                <portlet:actionurl name="updateQuantity" var="updateQuantityUrl" />
-                <portlet:actionurl name="remove" var="removeUrl" orderItemId="*{id}" productId="*{product.id}"/>
-                <form method="POST" th:action="${updateQuantityUrl}">
+                <form method="POST" liferay:action="action='updateQuantity', lifecycle='ACTION_PHASE'">
                     <input type="hidden" name="productId" th:value="*{product.id}" />
                     <input type="hidden" name="orderItemId" th:value="*{id}" />
                     <input type="number" name="quantity" class="quantityInput" style="width:30px" th:value="*{quantity}" maxlength="3" autocomplete="off"/><br />
                     <input type="submit" class="updateQuantity" th:value="#{cart.update}"/>
                 </form>
-                <a class="cartLinkBtn remove_from_cart" th:href="${removeUrl}"><span th:text="#{cart.remove}">Remove</span></a>
+                <a class="cartLinkBtn remove_from_cart" liferay:href="orderItemId=*{id},
+                                                                      productId=*{product.id},
+                                                                      action='remove'">
+                    <span th:text="#{cart.remove}">Remove</span>
+                </a>
             </td>
             <td align="center" blc:price="*{getPriceBeforeAdjustments(true)}"></td>
             

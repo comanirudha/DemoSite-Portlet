@@ -2,7 +2,7 @@
     <div id="addAddressContainer">
         <div id="addAddressTitle">Add a new address</div>
         <div id="addAddress">
-            <blc:form th:object="${addressForm}" th:action="@{/checkout/add-address}" method="post" id="shipping_address">
+            <blc:form th:object="${addressForm}" liferay:action="action='add-address'" method="post" id="shipping_address">
                 <input type="hidden" name="address.country" value="US" />
                 
                 <div class="form30">
@@ -46,7 +46,7 @@
                 </div>
                 
                 <input type="submit" class="save medium red" value="Save" />
-                <a th:href="@{/checkout/multiship}" class="cancel small-button gray-button" style="margin-top: 16px;">Cancel</a>
+                <a liferay:href="multiship='true'" class="cancel small-button gray-button" style="margin-top: 16px;">Cancel</a>
             </blc:form>
         </div>
     </div>

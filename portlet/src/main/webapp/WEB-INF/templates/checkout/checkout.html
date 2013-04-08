@@ -2,14 +2,14 @@
     <div th:if="${#lists.isEmpty(cart.orderItems)}" class="checkout_warning">
         <span th:text="#{cart.empty}">Your cart is empty</span>
         <br/>
-        <a th:href="@{/}"><span th:text="#{cart.continueShopping}">Continue Shopping</span></a>
+        <a liferay:href="portletname='catalog_WAR_broadleaf'"><span th:text="#{cart.continueShopping}">Continue Shopping</span></a>
     </div>
     
     <div th:unless="${#lists.isEmpty(cart.orderItems)}">
 
         <div class="cart_title">
             <span th:text="#{cart.orderSummary}">Order Summary</span>
-             <a id="cartLink" class="fancycart refreshonclose" th:href="@{/cart}">
+             <a id="cartLink" class="fancycart refreshonclose" liferay:href="portletname='cart_WAR_broadleaf'">
                 <span th:text="#{cart.edit}">Edit</span>
             </a>
         </div>
@@ -28,7 +28,7 @@
             <tr th:each="item : ${cart.orderItems}" th:object="${item}" th:id="${'productRow' + item.id}">
                 <td><img th:if="*{product.media['primary']}" th:src="@{*{product.media['primary'].url}}" width="60" th:alt="*{product.name}" /></td>
                 <td align="left">
-                    <a th:href="@{*{product.url}}" th:text="*{product.name}"></a>
+                    <a liferay:href="portletname='catalog_WAR_broadleaf, productId=*{product.id}'" th:text="*{product.name}"></a>
                     <br/>
                     <ul th:unless="*{#lists.isEmpty(sku.productOptionValues)}" class="productOptions">
                         <li th:each="productOptionValue : *{sku.productOptionValues}" th:text="${productOptionValue.productOption.label + ': ' + productOptionValue.attributeValue}"></li>
@@ -49,7 +49,7 @@
     
         <div class="cart_title">
             <span th:text="#{cart.step1}">Step 1</span> &raquo; <span th:text="#{cart.orderInformation}">Order Information</span>
-            <a th:if="${validOrderInfo and customer.anonymous}" th:href="@{/checkout(edit-order-info='true')}">
+            <a th:if="${validOrderInfo and customer.anonymous}" liferay:href="edit-order-info='true'">
                 <span th:text="#{cart.edit}">Edit</span>
             </a>
         </div>
@@ -58,7 +58,7 @@
     
         <div class="cart_title">
             <span th:text="#{cart.step2}">Step 2</span> &raquo; <span th:text="#{cart.shippingInformation}">Shipping Information</span>
-            <a th:if="${validShipping and cart.fulfillmentGroups != null and #lists.size(cart.fulfillmentGroups) == 1}" th:href="@{/checkout(edit-shipping='true')}">
+            <a th:if="${validShipping and cart.fulfillmentGroups != null and #lists.size(cart.fulfillmentGroups) == 1}" liferay:href="edit-shipping='true'">
                 <span th:text="#{cart.edit}">Edit</span>
             </a>
         </div>

@@ -7,8 +7,7 @@
                 <span th:text="#{cart.youCanAlso}">You can also</span>
                 <a th:href="@{/register(successUrl='/checkout')}"><span th:text="#{cart.registerNewAccount}">register a new account</span></a>.
             </p>
-            <portlet:actionurl name="savedetails" var="detailsUrl" />
-            <form action="checkout?p_auth=dCDqN3Z9&amp;p_p_id=checkout_WAR_broadleaf&amp;p_p_lifecycle=1&amp;p_p_state=normal&amp;p_p_mode=view&amp;p_p_col_id=column-1&amp;p_p_col_count=1&amp;_checkout_WAR_broadleaf_javax.portlet.action=savedetails" th:object="${orderInfoForm}" method="POST" id="order_info" novalidate="novalidate">
+            <form liferay:action="action='savedetails'" th:object="${orderInfoForm}" method="POST" id="order_info" novalidate="novalidate">
         
                 <div class="form50">
                     <label for="emailAddress"><span th:text="#{cart.emailAddress}">Email Address</span></label>

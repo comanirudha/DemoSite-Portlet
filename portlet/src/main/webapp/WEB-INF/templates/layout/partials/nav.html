@@ -10,7 +10,8 @@
     <ul>
         <li th:each="category : ${navCategories}">
             <portlet:renderurl categoryId="${category.id}" var="categoryUrl" />
-            <a class="home" th:href="${categoryUrl}" th:class="${categoryStat.first}? 'home'" th:text="${category.name}"></a>
+            <a class="home" liferay:href="categoryId=${category.id}, lifecycle='RENDER_PHASE'"
+                                   th:class="${categoryStat.first}? 'home'" th:text="${category.name}"></a>
         </li>
     </ul>
 </nav>
